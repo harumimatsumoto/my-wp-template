@@ -13,9 +13,9 @@
 
 get_header(); ?>
 </header>
-<div class ="container">
-	<div class ="row"> 
-		<div class ="main-visual col-xs-12">
+<div class = "container">
+	<div class = "row main-visual"> 
+		<div class = "col-xs-12 text-center">
 			<h1>はじめてのWP：Home.php</h1>
 		</div>
 	</div>
@@ -23,9 +23,25 @@ get_header(); ?>
 		<?php
 			$postslist = get_posts( array( 'posts_per_page' => 6, 'post_type'=> 'page','order'=> 'ASC'));
 			foreach ($postslist as $post) : setup_postdata($post);
+			$title = $post->post_title;
 		?>
 		<div class ="col-md-4">
-			<?php echo($post->post_title) ?>
+			<h2 class = "text-center" ><?php echo($title) ?></h2>
+			<ul>
+				<?php
+					$args = array('category' => '食');
+					$popular_postslist = get_posts( $args );
+					print var_export($popular_postslist , true);
+
+					if(!empty($popular_postslist)):	
+						foreach ($popular_post as $popular_postslist) :setup_postdata
+				?>
+				<li><?php echo($popular_post->$post_title); ?></li>
+				<?php endforeach; ?>
+				<?php else: ?>
+					<li><?php echo("まだ記事がありません") ?></li>
+				<?php endif;?>
+			</ul>
 		</div> 
 		<?php endforeach; ?>
 	</div>

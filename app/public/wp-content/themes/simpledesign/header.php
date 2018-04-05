@@ -12,9 +12,10 @@
 <head>
 <meta charset='<?php bloginfo( 'charset' ); ?>'>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="<?php echo get_template_directory_uri(); ?>/assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href = "<?php echo get_template_directory_uri(); ?>/style.css">
+<link href="<?php echo get_template_directory_uri(); ?>/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <?php wp_head(); ?>
-</head>
+</head>	
 
 <body <?php body_class(); ?>>
 	<div 

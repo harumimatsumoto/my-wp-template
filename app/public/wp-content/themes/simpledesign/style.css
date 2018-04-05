@@ -179,6 +179,14 @@ textarea {
 	vertical-align: top; /* Improves readability and alignment in all browsers */
 	width: 100%;
 }
+/*--------------------------------------------------------------
+# MainVisual
+--------------------------------------------------------------*/
+.main-visual{
+	height: 600px;
+	width:100%;
+}
+
 
 /*--------------------------------------------------------------
 # Navigation
