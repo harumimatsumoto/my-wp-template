@@ -2,7 +2,8 @@
 /**
  * The main template file.
  *
- * This is the most generic template file in a WordPress theme
+ * This is the most generic templa
+ * te file in a WordPress theme
  * and one of the two required files for a theme (the other being style.css).
  * It is used to display a page when nothing more specific matches a query.
  * E.g., it puts together the home page when no home.php file exists.
@@ -16,33 +17,29 @@ get_header(); ?>
 <div class = "container">
 	<div class = "row main-visual"> 
 		<div class = "col-xs-12 text-center">
-			<h1>はじめてのWP：Home.php</h1>
+			<h1><?php bloginfo( 'name' ); ?></h1>
 		</div>
 	</div>
-	<div class = "top-page-contents row">
+	<div class = "row top-page-contents">
 		<?php
-			$postslist = get_posts( array( 'posts_per_page' => 6, 'post_type'=> 'page','order'=> 'ASC'));
-			foreach ($postslist as $post) : setup_postdata($post);
-			$title = $post->post_title;
-		?>
-		<div class ="col-md-4">
-			<h2 class = "text-center" ><?php echo($title) ?></h2>
-			<ul>
-				<?php
-					$args = array('category' => '食');
-					$popular_postslist = get_posts( $args );
-					print var_export($popular_postslist , true);
-
-					if(!empty($popular_postslist)):	
-						foreach ($popular_post as $popular_postslist) :setup_postdata
-				?>
-				<li><?php echo($popular_post->$post_title); ?></li>
-				<?php endforeach; ?>
-				<?php else: ?>
-					<li><?php echo("まだ記事がありません") ?></li>
-				<?php endif;?>
+			$categories = get_categories(array('orderby'=>'term_id'));
+			foreach($categories as $category) :
+		?>		
+			<div class ="col-md-4" id ="top_contents">
+			<h2 class = "text-center" >
+				<a href="<?php echo get_category_link( $category->term_id ); ?>">
+					<?php echo $category->cat_name; ?>
+				</a>
+			</h2>
+			<ul id ='top_lists'>
+			<?php
+				query_posts('cat='.$category->cat_ID);
+				if (have_posts()) : while (have_posts()) : the_post();
+			?>
+				<li><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></li>
+			<?php endwhile; endif; ?>
 			</ul>
-		</div> 
+			</div> 
 		<?php endforeach; ?>
 	</div>
 </div>		
