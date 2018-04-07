@@ -4,8 +4,7 @@
  *
  * Contains the closing of the "wrapper" div and all content after.
  *
- * @package Hestia
- * @since Hestia 1.0
+ * @package Simplesite
  */
 ?>
 		</div>
